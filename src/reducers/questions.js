@@ -25,6 +25,40 @@ export default function questions (state = {}, action) {
     //     [action.tweet.id]: action.tweet,
     //     ...replyingTo,
     //   }
+    case ANSWER_QUESTION :
+      return {
+        ...state,
+        [action.question.qid]:{
+          ...state[action.question.qid],
+          [action.question.answer]: {
+            ...state[action.question.qid][action.question.answer],
+            votes: state[action.question.qid][action.question.answer].votes.concat([action.question.authedUser])
+          }  
+        }
+      }
+      // return {
+      //   users = {
+      //     ...users,
+      //     [authedUser]: {
+      //       ...users[authedUser],
+      //       answers: {
+      //         ...users[authedUser].answers,
+      //         [qid]: answer
+      //       }
+      //     }
+      //   }
+  
+      //   questions = {
+      //     ...questions,
+      //     [qid]: {
+      //       ...questions[qid],
+      //       [answer]: {
+      //         ...questions[qid][answer],
+      //         votes: questions[qid][answer].votes.concat([authedUser])
+      //       }
+      //     }
+      //   }
+      // }
     default :
       return state
   }

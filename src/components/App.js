@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { handleInitialData } from '../actions/shared'
 import Dashboard from './Dashboard'
+import Loggin from './Loggin'
 import LoadingBar from 'react-redux-loading'
 // import NewTweet from './NewTweet'
 // import TweetPage from './TweetPage'
@@ -17,7 +18,7 @@ class App extends Component {
       <div>
         <LoadingBar />
         {this.props.loading === true
-          ? null
+          ? <Loggin/>
           : <Dashboard />}
       </div>
     )

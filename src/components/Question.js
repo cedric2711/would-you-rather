@@ -24,7 +24,7 @@ class Question extends Component {
   //   this.props.history.push(`/tweet/${id}`)
   // }
   render() {
-    const { question } = this.props
+    const { question, authedUser } = this.props
 
     if (question === null) {
       return <p>This Question doesn't existd</p>
@@ -32,26 +32,32 @@ class Question extends Component {
     const {
       author, optionOne, optionTwo
     } = question
+    const displayVoting = (optionOne.votes.indexOf(authedUser) !== -1 || optionTwo.votes.indexOf(authedUser) !== -1) ? true : false
+    const totalAnswers = optionOne.votes.length + optionTwo.votes.length
+
     return (
-      <div>
+      <div className="wouldYouRather">
         <h3>Would you rather?</h3>
         <div className="questionBlock">
-          <Option key ={question.id+"A"} option={optionOne} id={question.id} questionAnswer="optionOne"/>
+          <Option key ={question.id+"A"} option={optionOne} id={question.id} questionAnswer="optionOne" displayVoting= {displayVoting} totalAnswers= {totalAnswers}/>
           <span>OR</span>
-          <Option key ={question.id+"B"} option={optionTwo} id={question.id} questionAnswer="optionTwo"/>
+          <Option key ={question.id+"B"} option={optionTwo} id={question.id} questionAnswer="optionTwo" displayVoting= {displayVoting} totalAnswers= {totalAnswers}/>
         </div>
-        <div>
+        {displayVoting && <div className="authorName">
           question Created by {author}
-        </div>
+        </div>}
       </div>
     )
   }
 }
-function mapStateToProps ({questions}, { id }) {
+function mapStateToProps ({questions, authedUser}, { id }) {
   const question = questions[id]
   return {
     question: question
       ? question
+      : null,
+    authedUser: authedUser
+      ? authedUser
       : null
   }
 }

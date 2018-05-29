@@ -16,9 +16,76 @@ a {
   padding: 10px;
 }
 
+div#root {
+  padding: 20px;
+}
+
 .questionBlock {
   display: flex;
+  align-items: center;
 }
 .optionBlock {
   padding: 0 5px;
+  border: 1px solid #6A56D8;
+  background-color: #BBB0F8;
+  flex: 1;
+}
+
+ul.dashboard-list {
+  list-style-type: none;
+  width: 700px;
+}
+
+.dashboard-list li{
+  border: 1px solid #16468D;
+  margin-top: 15px;
+  padding: 0 15px 15px 15px;
+  background: #ACCAF7;
+}
+
+.questionBlock span {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.authorName {
+  margin-top: 7px;
+}
+/* modal css */
+.modal {
+  display: block; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
 }

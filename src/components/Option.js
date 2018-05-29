@@ -7,33 +7,35 @@ class Question extends Component {
   handleChoise = (e) => {
     e.preventDefault()
 
-    const { option, id, dispatch, questionAnswer } = this.props
-
-    dispatch(handleQuestionAnswer({
-        id, 
-        answer: questionAnswer
-    }))
+    const { option, id, dispatch, questionAnswer, displayVoting } = this.props
+    if(!displayVoting){
+      dispatch(handleQuestionAnswer({
+          id, 
+          answer: questionAnswer
+      }))
+    }
   }
   // toParent = (e, id) => {
   //   e.preventDefault()
   //   this.props.history.push(`/tweet/${id}`)
   // }
   render() {
-    const { option, id } = this.props
+    const { option, id, displayVoting, totalAnswers} = this.props
+    const {
+      text, votes
+    } = option
 
     if (text === null) {
       return <p>This Question doesn't existd</p>
     }
-    const {
-      text, votes
-    } = option
+    const percentage = Math.round((votes.length * 100) / totalAnswers)
     return (
     <div className="optionBlock">
         <div onClick={this.handleChoise}>
             {text}
         </div>
-        {votes.length && (
-            <div>{votes.length}</div>
+        {displayVoting && (
+            <div>{percentage}%</div>
         )}
     </div>
     )

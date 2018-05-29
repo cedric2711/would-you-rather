@@ -38,16 +38,28 @@ function addQuestionAnswer (question) {
 export function handleQuestionAnswer (response) {
   return (dispatch, getState) => {
     const { authedUser } = getState()
-
-    dispatch(showLoading())
-
-    return saveQuestionAnswer({
+    var questionAnswer={
       authedUser,
-      qid:response.id,
-      answer:response.answer
-    })
-      .then((question) => dispatch(addQuestionAnswer(question)))
-      .then(() => dispatch(hideLoading()))
+      qid: response.id,
+      answer: response.answer
+    }
+    dispatch(addQuestionAnswer(questionAnswer))
+
+    return saveQuestionAnswer(questionAnswer)
+      .catch((e) => {
+        console.warn('Error in handleQuestionAnswer: ', e)
+        dispatch(addQuestionAnswer(questionAnswer))
+        alert('The was an error liking the tweet. Try again.')
+      })
+    // dispatch(showLoading())
+
+    // return saveQuestionAnswer({
+    //   authedUser,
+    //   qid:response.id,
+    //   answer:response.answer
+    // })
+    //   .then((question) => dispatch(addQuestionAnswer(question)))
+    //   .then(() => dispatch(hideLoading()))
   }
 }
 
