@@ -1,39 +1,37 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Question from './Question'
-import { setAuthedUser } from '../actions/authedUser'
+
+import AddQuestion from './AddQuestion'
+import { Redirect } from 'react-router-dom'
 
 class Dashboard extends Component {
-  logoutUser = (e) => {
-    const {dispatch} = this.props
-    dispatch(setAuthedUser(null))
-  }
   render() {
+    const {authedUser, questionsIDs} = this.props
+    if(this.props.loading){
+      return <Redirect to='/loggin' />
+    }
     return (
       <div>
-        <div className="navigation">
-          <div className="leftNav"></div>
-          <div className="rightNav" onClick={this.logoutUser}>
-            Log Out
-          </div>
-        </div>
         <h3 className='center'>What Whould You Do?</h3>
         <ul className='dashboard-list'>
-          {this.props.questionsIDs.map((id) => (
-            <li key={id}>
-                <Question id={id}/>
-            </li>
-          ))}
+          {questionsIDs.map((id) => {
+
+            return (<li key={id}>
+                    <Question id={id}/>
+                  </li>)
+          })}
         </ul>
       </div>
     )
   }
 }
 
-function mapStateToProps ({ questions }) {
+function mapStateToProps ({ questions, authedUser }) {
   return {
     questionsIDs: Object.keys(questions)
-      .sort((a,b) => questions[b].timestamp - questions[a].timestamp)
+      .sort((a,b) => questions[b].timestamp - questions[a].timestamp),
+    loading: authedUser === null
   }
 }
 

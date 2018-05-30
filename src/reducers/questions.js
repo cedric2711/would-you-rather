@@ -7,24 +7,11 @@ export default function questions (state = {}, action) {
         ...state,
         ...action.questions
       }
-    // case ADD_QUESTION :
-    //   const { question } = action
-
-    //   let replyingTo = {}
-    //   if (tweet.replyingTo !== null) {
-    //     replyingTo = {
-    //       [tweet.replyingTo]: {
-    //         ...state[tweet.replyingTo],
-    //         replies: state[tweet.replyingTo].replies.concat([tweet.id])
-    //       }
-    //     }
-    //   }
-
-    //   return {
-    //     ...state,
-    //     [action.tweet.id]: action.tweet,
-    //     ...replyingTo,
-    //   }
+    case ADD_QUESTION :
+      return {
+        ...state,
+        [action.question.id]:action.question
+      }
     case ANSWER_QUESTION :
       return {
         ...state,
@@ -36,29 +23,6 @@ export default function questions (state = {}, action) {
           }  
         }
       }
-      // return {
-      //   users = {
-      //     ...users,
-      //     [authedUser]: {
-      //       ...users[authedUser],
-      //       answers: {
-      //         ...users[authedUser].answers,
-      //         [qid]: answer
-      //       }
-      //     }
-      //   }
-  
-      //   questions = {
-      //     ...questions,
-      //     [qid]: {
-      //       ...questions[qid],
-      //       [answer]: {
-      //         ...questions[qid][answer],
-      //         votes: questions[qid][answer].votes.concat([authedUser])
-      //       }
-      //     }
-      //   }
-      // }
     default :
       return state
   }

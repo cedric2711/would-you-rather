@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { setAuthedUser } from '../actions/authedUser'
+import { Redirect } from 'react-router-dom'
 
 class Loggin extends Component {
   state = {
@@ -9,7 +10,7 @@ class Loggin extends Component {
   }
   handleSubmit = (e) => {
     e.preventDefault()
-
+    
     const {dispatch} = this.props
     const {userChosen, userName } = this.state
     if(userChosen){
@@ -18,7 +19,6 @@ class Loggin extends Component {
   }
 
   handleChange = (e) => {
-    debugger
     const {userChosen } = this.state
     const userName = e.target.value
     if(e.target.value){
@@ -30,12 +30,15 @@ class Loggin extends Component {
   }
   
   render() {
-    const {users}= this.props
+    const {users, authedUser}= this.props
     const {userChosen }= this.state
-    
+    if(authedUser!==null){
+      return <Redirect to='/' />
+    }
     if (users === undefined || users.length=== 0) {
       return <p>Users not available</p>
     }
+
     return (
       <div id="myModal" className="modal">
         <div className="modal-content">
@@ -68,13 +71,14 @@ class Loggin extends Component {
   }
 }
 
-function mapStateToProps ({ users }) {
+function mapStateToProps ({ users, authedUser }) {
   const userArray= [];
   for (var user in users){
     userArray.push(users[user]);
   }
   return {
-    users: userArray
+    users: userArray,
+    authedUser
   }
 }
 export default connect(mapStateToProps)(Loggin)
