@@ -72,12 +72,8 @@ class Loggin extends Component {
 }
 
 function mapStateToProps ({ users, authedUser }) {
-  const userArray= [];
-  for (var user in users){
-    userArray.push(users[user]);
-  }
   return {
-    users: userArray,
+    users: Object.values(users),
     authedUser
   }
 }

@@ -36,21 +36,23 @@ class Question extends Component {
     const totalAnswers = optionOne.votes.length + optionTwo.votes.length
 
     return (
-      <div className="wouldYouRather">
-        <h3>Would you rather?</h3>
-        <div className="questionBlock">
-          <Option key ={question.id+"A"} option={optionOne} id={question.id} questionAnswer="optionOne" displayVoting= {displayVoting} totalAnswers= {totalAnswers}/>
-          <span>OR</span>
-          <Option key ={question.id+"B"} option={optionTwo} id={question.id} questionAnswer="optionTwo" displayVoting= {displayVoting} totalAnswers= {totalAnswers}/>
+      <Link to={`/question/${question.id}`} className='tweet'>
+        <div className="wouldYouRather">
+          <h3>Would you rather?</h3>
+          <div className="questionBlock">
+            <Option key={question.id + "A"} option={optionOne} id={question.id} questionAnswer="optionOne" displayVoting={displayVoting} totalAnswers={totalAnswers} />
+            <span>OR</span>
+            <Option key={question.id + "B"} option={optionTwo} id={question.id} questionAnswer="optionTwo" displayVoting={displayVoting} totalAnswers={totalAnswers} />
+          </div>
+          {displayVoting && <div className="authorName">
+            question Created by {author}
+          </div>}
         </div>
-        {displayVoting && <div className="authorName">
-          question Created by {author}
-        </div>}
-      </div>
+      </Link>
     )
   }
 }
-function mapStateToProps ({questions, authedUser}, { id }) {
+function mapStateToProps({ questions, authedUser }, { id }) {
   const question = questions[id]
   return {
     question: question

@@ -51,6 +51,16 @@ ul.dashboard-list {
 .authorName {
   margin-top: 7px;
 }
+
+nav.nav, nav ul {
+  display: flex;
+}
+.nav ul {
+  list-style-type: none;  
+}
+.leftNav li, .rightNav li {
+  margin-left: 27px;
+}
 /* modal css */
 .modal {
   display: block; /* Hidden by default */

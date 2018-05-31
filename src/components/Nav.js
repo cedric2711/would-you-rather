@@ -12,27 +12,34 @@ class Nav extends Component {
   render () {
     return (
       <nav className='nav'>
-        <ul>
-          <li>
-            <NavLink to='/' exact activeClassName='active'>
-              Home
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to='/add' activeClassName='active'>
-              Add Question
-            </NavLink>
-          </li>
-          <li>
-            {
-              this.props.loading?
-                <NavLink to='/loggin' activeClassName='active'>
-                  Log in
-                </NavLink>
-                :<div onClick={this.logoutUser}>Logout</div>
-            }
-          </li>
-        </ul>
+        <div className="leftNav">
+          <ul>
+            <li>
+              <NavLink to='/' exact activeClassName='active'>
+                Home
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to='/add' activeClassName='active'>
+                Add Question
+              </NavLink>
+            </li>
+          </ul>
+        </div>
+        <div className="rightNav">
+            <ul>
+            <li>Hello {this.props.authedUser}</li>
+            <li>
+              {
+                this.props.loading?
+                  <NavLink to='/loggin' activeClassName='active'>
+                    Log in
+                  </NavLink>
+                  :<div onClick={this.logoutUser}>Logout</div>
+              }
+            </li>
+            </ul>
+        </div>
       </nav>
     )
   }
@@ -40,7 +47,8 @@ class Nav extends Component {
 
 function mapStateToProps ({ authedUser }) {
   return {
-    loading: authedUser === null
+    loading: authedUser === null,
+    authedUser
   }
 }
 
