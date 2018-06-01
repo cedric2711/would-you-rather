@@ -24,11 +24,18 @@ class Nav extends Component {
                 Add Question
               </NavLink>
             </li>
+            <li>
+              <NavLink to='/leaderboard' activeClassName='active'>
+                Leaders Board
+              </NavLink>
+            </li>
           </ul>
         </div>
         <div className="rightNav">
             <ul>
-            <li>Hello {this.props.authedUser}</li>
+            {(this.props.authedUser === null)? null: 
+              <li>Hello {this.props.authedUser}</li>
+            }
             <li>
               {
                 this.props.loading?

@@ -1,14 +1,19 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { handleQuestionAnswer } from '../actions/questions'
-import { div, withRouter } from 'react-router-dom'
+import { div, Redirect } from 'react-router-dom'
 
-class Question extends Component {
+class Option extends Component {
+  state = {
+    logginRequied:false
+  }
   handleChoise = (e) => {
     e.preventDefault()
 
-    const { option, id, dispatch, questionAnswer, displayVoting } = this.props
-    if(!displayVoting){
+    const {id, dispatch, questionAnswer, displayVoting, authedUser } = this.props
+    if(authedUser=== null){
+      this.setState(() => ({logginRequied:true}))
+    } else if(!displayVoting){
       dispatch(handleQuestionAnswer({
           id, 
           answer: questionAnswer
@@ -20,25 +25,35 @@ class Question extends Component {
   //   this.props.history.push(`/tweet/${id}`)
   // }
   render() {
-    const { option, id, displayVoting, totalAnswers} = this.props
+    const { option, displayVoting, totalAnswers, authedUser} = this.props
     const {
       text, votes
     } = option
-
+    if( this.state.logginRequied){
+      return <Redirect to='/loggin' />
+    }
     if (text === null) {
       return <p>This Question doesn't existd</p>
     }
     const percentage = Math.round((votes.length * 100) / totalAnswers)
+    const classNameString=(votes.indexOf(authedUser) === -1)?"optionBlockText notanswered":"optionBlockText answerd"
     return (
     <div className="optionBlock">
-        <div onClick={this.handleChoise}>
+        <div className={classNameString} onClick={this.handleChoise}>
             {text}
         </div>
         {displayVoting && (
-            <div>{percentage}%</div>
+            <div>{votes.length} people chose this option that's {percentage}%</div>
         )}
     </div>
     )
   }
 }
-export default connect()(Question)
+
+function mapStateToProps ({ authedUser }, props) {
+  return {
+    props,
+    authedUser
+  }
+}
+export default connect(mapStateToProps)(Option)

@@ -15,7 +15,7 @@ class AddQuestion extends Component {
         
     const {dispatch} = this.props
     const {optionOneText,optionTwoText } = this.state
-    dispatch(handleAddQuestion(optionOneText, optionOneText))
+    dispatch(handleAddQuestion(optionOneText, optionTwoText))
     this.setState(() => ({
       optionTwoText: '',
       optionOneText: '',

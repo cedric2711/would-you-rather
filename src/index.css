@@ -26,9 +26,17 @@ div#root {
 }
 .optionBlock {
   padding: 0 5px;
-  border: 1px solid #6A56D8;
-  background-color: #BBB0F8;
   flex: 1;
+}
+.optionBlockText {
+  border: 1px dashed #6A56D8;
+  background-color: #BBB0F8;
+  padding: 5px;
+}
+
+.optionBlockText.answerd {
+  border-color: green;
+  border-style: solid;
 }
 
 ul.dashboard-list {
@@ -52,7 +60,18 @@ ul.dashboard-list {
   margin-top: 7px;
 }
 
-nav.nav, nav ul {
+.createdBy {
+  align-items: center;
+  display: flex;
+}
+
+.avatar {
+  height: 50px;
+  border-radius: 25px;
+  margin: 10px;
+}
+
+nav.nav, nav ul, .dashboadBlock {
   display: flex;
 }
 .nav ul {
@@ -60,6 +79,15 @@ nav.nav, nav ul {
 }
 .leftNav li, .rightNav li {
   margin-left: 27px;
+}
+
+.learderBoardBlock {
+  padding-left: 10px;
+}
+
+.learderBoardList {
+  display: flex;
+  align-items: center;
 }
 /* modal css */
 .modal {

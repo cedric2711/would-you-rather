@@ -5,10 +5,10 @@ import { Redirect } from 'react-router-dom'
 
 class QuestionPage extends Component {
   render() {
-    const {authedUser, question_id, question} = this.props
-    // if(this.props.loading){
-    //   return <Redirect to='/loggin' />
-    // }
+    const {question_id} = this.props
+    if(this.props.loading){
+      return <Redirect to='/loggin' />
+    }
     return (
       <div>
         <h3 className='center'>What Whould You Do?</h3>

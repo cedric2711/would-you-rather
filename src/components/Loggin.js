@@ -7,6 +7,10 @@ class Loggin extends Component {
   state = {
     userChosen: false,
     userName: '',
+    goToHome:false
+  }
+  closeModal = () =>{
+    this.setState(() => ({goToHome:true}))
   }
   handleSubmit = (e) => {
     e.preventDefault()
@@ -19,7 +23,6 @@ class Loggin extends Component {
   }
 
   handleChange = (e) => {
-    const {userChosen } = this.state
     const userName = e.target.value
     if(e.target.value){
       this.setState(() =>({
@@ -31,8 +34,8 @@ class Loggin extends Component {
   
   render() {
     const {users, authedUser}= this.props
-    const {userChosen }= this.state
-    if(authedUser!==null){
+    const {userChosen, goToHome }= this.state
+    if(authedUser!==null || goToHome){
       return <Redirect to='/' />
     }
     if (users === undefined || users.length=== 0) {
@@ -42,7 +45,7 @@ class Loggin extends Component {
     return (
       <div id="myModal" className="modal">
         <div className="modal-content">
-          <span className="close">&times;</span>
+          <span className="close" onClick={this.closeModal}>&times;</span>
           <div>
             <h3 className='center'>Sign in to choose your fate</h3>
             <form className='loggin-window' onSubmit={this.handleSubmit}>
