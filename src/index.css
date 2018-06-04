@@ -30,11 +30,12 @@ div#root {
 }
 .optionBlockText {
   border: 1px dashed #6A56D8;
-  background-color: #BBB0F8;
+  background-color: #BB91E1;
   padding: 5px;
 }
 
 .optionBlockText.answerd {
+  background-color: #BAE439;
   border-color: green;
   border-style: solid;
 }

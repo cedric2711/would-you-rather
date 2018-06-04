@@ -8,6 +8,7 @@ import LoadingBar from 'react-redux-loading'
 import AddQuestion from './AddQuestion'
 import QuestionPage from './QuestionPage'
 import LeaderBoard from './LeaderBoard'
+import ErrorPage from './ErrorPage'
 // import TweetPage from './TweetPage'
  import Nav from './Nav'
 
@@ -28,6 +29,7 @@ class App extends Component {
             <Route path='/loggin' component={Loggin} />
             <Route path='/question/:question_id' component={QuestionPage} />
             <Route path='/leaderboard' component={LeaderBoard} />
+            <Route path='/404_page' component={ErrorPage} />          
           </div>
         </Fragment>
       </Router>

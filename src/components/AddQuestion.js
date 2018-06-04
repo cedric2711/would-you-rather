@@ -16,12 +16,12 @@ class AddQuestion extends Component {
     const {dispatch} = this.props
     const {optionOneText,optionTwoText } = this.state
     dispatch(handleAddQuestion(optionOneText, optionTwoText))
-    this.setState(() => ({
+    this.setState({
       optionTwoText: '',
       optionOneText: '',
       enableButton: false,
       toHome: true
-    }))
+    })
   }
   validateOptions = (option, optionText) =>{
     const {optionOneText, optionTwoText} = this.state

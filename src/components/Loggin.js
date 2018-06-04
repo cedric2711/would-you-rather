@@ -10,7 +10,7 @@ class Loggin extends Component {
     goToHome:false
   }
   closeModal = () =>{
-    this.setState(() => ({goToHome:true}))
+    this.setState({goToHome:true})
   }
   handleSubmit = (e) => {
     e.preventDefault()

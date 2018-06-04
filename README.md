@@ -98,3 +98,9 @@ Your code will talk to the database via 4 methods:
 ## Contributing
 
 This repository is the starter code for *all* Udacity students. Therefore, we most likely will not accept pull requests. For details, check out [CONTRIBUTING.md](https://github.com/udacity/reactnd-project-would-you-rather-starter/blob/master/CONTRIBUTING.md).
+
+
+# Project installation and launch instructions
+1. Download the project.
+2. Run `npm install` to install the dependent packages.
+3. Run `npm start` to launch the application.

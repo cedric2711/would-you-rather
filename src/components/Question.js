@@ -4,21 +4,6 @@ import { Link } from 'react-router-dom'
 import Option from './Option'
 
 class Question extends Component {
-  // handleLike = (e) => {
-  //   e.preventDefault()
-
-  //   const { dispatch, question, authedUser } = this.props
-
-  //   dispatch(handleToggleTweet({
-  //     id: tweet.id,
-  //     hasLiked: tweet.hasLiked,
-  //     authedUser
-  //   }))
-  // }
-  // toParent = (e, id) => {
-  //   e.preventDefault()
-  //   this.props.history.push(`/tweet/${id}`)
-  // }
   render() {
     const { question, authedUser, user } = this.props
 

@@ -20,10 +20,7 @@ class Option extends Component {
       }))
     }
   }
-  // toParent = (e, id) => {
-  //   e.preventDefault()
-  //   this.props.history.push(`/tweet/${id}`)
-  // }
+
   render() {
     const { option, displayVoting, totalAnswers, authedUser} = this.props
     const {

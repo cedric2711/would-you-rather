@@ -1,40 +1,44 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 import Question from './Question'
 
-class Dashboard extends Component {
-  render() {
-    const {authedUser, questions} = this.props
-    return (
-      <div>
-        <h3 className='center'>What Whould You Do?</h3>
-        <ul className='dashboard-list'>
-          {questions.filter((question) => {
-            return (question.optionOne.votes.indexOf(authedUser) === -1 && question.optionTwo.votes.indexOf(authedUser) === -1)
-          }).map((question) => (
-            <li key={question.id}>
-              <Question id={question.id}/>
-            </li>
-          ))}
-        </ul>
-        {authedUser===null? null:
-        <div>
-          <h4>Answered</h4>
-          <ul className='dashboard-list'>
-            {questions.filter((question) => {
-              return (question.optionOne.votes.indexOf(authedUser) !== -1 || question.optionTwo.votes.indexOf(authedUser) !== -1)
-            }).map((question) => (
-              <li key={question.id}>
-                <Question id={question.id}/>
-              </li>
-            ))}
-          </ul>
-          </div>
-        }
+const Dashboard = ({authedUser, questions}) => (
+  <div>
+    <h3 className='center'>What Whould You Do?</h3>
+    <ul className='dashboard-list'>
+      {questions.filter((question) => {
+        return (
+          question.optionOne.votes.indexOf(authedUser) === -1 
+          && 
+          question.optionTwo.votes.indexOf(authedUser) === -1
+        )
+      }).map((question) => (
+        <li key={question.id}>
+          <Question id={question.id}/>
+        </li>
+      ))}
+    </ul>
+    {authedUser===null? null:
+    <div>
+      <h4>Answered</h4>
+      <ul className='dashboard-list'>
+        {questions.filter((question) => {
+          return (
+            question.optionOne.votes.indexOf(authedUser) !== -1 
+            || 
+            question.optionTwo.votes.indexOf(authedUser) !== -1
+          )
+        }).map((question) => (
+          <li key={question.id}>
+            <Question id={question.id}/>
+          </li>
+        ))}
+      </ul>
       </div>
-    )
-  }
-}
+    }
+  </div>
+)
+
 
 function mapStateToProps ({ questions, authedUser }) {
   return {
